@@ -1,4 +1,6 @@
 *.exe
 *.dsym
 *.log
+*.DS_store
+
 main

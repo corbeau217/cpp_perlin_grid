@@ -4,10 +4,6 @@
 
 #include "Cell.hpp"
 
-#define DEFAULT_MARGIN 10
-#define DEFAULT_COLS 20
-#define DEFAULT_ROWS 20
-#define DEFAULT_CELLSIZE 15
 
 class Grid{
     public:
@@ -23,7 +19,7 @@ class Grid{
     Cell ***cells;
 
     // constructor
-    Grid(int width_in, int height_in);
+    Grid(int margin_in, int cols_in, int rows_in, int cellSize_in);
     // destructor
     ~Grid();
 

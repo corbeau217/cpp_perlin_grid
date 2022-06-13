@@ -2,15 +2,15 @@
 #include "Grid.hpp"
 
 // constructor
-Grid::Grid(int width_in, int height_in){
+Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in){
     // setup margins
-    xMargin = DEFAULT_MARGIN;
-    yMargin = DEFAULT_MARGIN;
+    xMargin = margin_in;
+    yMargin = margin_in;
     // setup cell size
-    cellSize = DEFAULT_CELLSIZE;
+    cellSize = cellSize_in;
     // set up array bounds
-    cols = ( width_in-(xMargin*2))/cellSize;
-    rows = (height_in-(yMargin*2))/cellSize;
+    cols = cols_in;
+    rows = rows_in;
     // setup cells
     cells = new Cell**[cols];
     for(int x = 0; x < cols; x++){

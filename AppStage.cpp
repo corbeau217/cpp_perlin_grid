@@ -16,8 +16,6 @@ AppStage::~AppStage(){
 }
 
 
-
-
 void AppStage::paint(){
     //TODO: handle frame paint
 

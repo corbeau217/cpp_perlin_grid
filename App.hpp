@@ -28,7 +28,7 @@ using namespace std;
 #define DEFAULT_WIDTH 1024
 #define DEFAULT_HEIGHT 720
 #define DEFAULT_FRAMERATE 15
-#define DEFAULT_TITLE "C++ isometric grid project"
+#define DEFAULT_TITLE "C++ perlin noise grid project"
 
 // color definitions
 #define DEFAULT_FRAME_BG GRAY

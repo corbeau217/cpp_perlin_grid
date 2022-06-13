@@ -18,7 +18,7 @@ class AppStage{
     // dimension variables
     int width;
     int height;
-
+    
 
     // constructor
     AppStage(int width_in, int height_in);

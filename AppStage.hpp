@@ -13,12 +13,15 @@
 #ifndef APPSTAGE_HPP
 #define APPSTAGE_HPP
 
+#include "Grid.hpp"
+
 class AppStage{
     public:
     // dimension variables
     int width;
     int height;
-    
+    // grid instance
+    Grid *grid;
 
     // constructor
     AppStage(int width_in, int height_in);

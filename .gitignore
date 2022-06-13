@@ -1,6 +1,10 @@
-*.exe
-*.dsym
-*.log
-*.DS_store
+*
 
-main
+!*.json
+!*.cpp
+!*.hpp
+!*.c
+!*.h
+!Makefile
+!main.code-workspace
+!*.dll

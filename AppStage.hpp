@@ -14,6 +14,7 @@
 #define APPSTAGE_HPP
 
 #include "Grid.hpp"
+#include "PerlinNoise.hpp"
 
 class AppStage{
     public:
@@ -22,6 +23,8 @@ class AppStage{
     int height;
     // grid instance
     Grid *grid;
+    // perlin noise instance
+    PerlinNoise *perlinNoise;
 
     // constructor
     AppStage(int width_in, int height_in);

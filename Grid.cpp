@@ -24,19 +24,19 @@ Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in){
 }
 // destructor
 Grid::~Grid(){
-    // // delete our cell pointers
-    // for(int x = 0; x < cols; x++){
-    //     for(int y = 0; y < rows; y++)
-    //         delete cells[x][y];
-    //     delete cells[x];
-    // }
-    // delete cells;
+    // delete our cell pointers
+    for(int x = 0; x < cols; x++){
+        for(int y = 0; y < rows; y++)
+            delete cells[x][y];
+        delete cells[x];
+    }
+    delete cells;
 }
 
 // paint function
 void Grid::paint(bool drawOutlines){
-    for(int x = 0; x < cols/2; x++)
-        for(int y = 0; y < rows/2; y++)
+    for(int x = 0; x < cols; x++)
+        for(int y = 0; y < rows; y++)
             get(x,y)->paint(drawOutlines);
     
 }

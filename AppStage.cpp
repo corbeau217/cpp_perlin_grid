@@ -20,13 +20,14 @@ AppStage::AppStage(int width_in, int height_in){
     int gridRows = ( width-(gridMargin*2))/cellSize;
     int gridCols = (height-(gridMargin*2))/cellSize;
     // generate grid
-    grid = new Grid(gridMargin, gridRows*2,gridCols*2, cellSize);
+    grid = new Grid(gridMargin, gridRows,gridCols, cellSize);
     // generate perlin noise
-    perlinNoise = new PerlinNoise(gridRows, gridCols, DEFAULT_CELLSIZE*3);
-    for(int x = 0; x < gridCols/2; x++){
-        for(int y = 0; y < gridRows/2; y++){
-            float *perlinVal = perlinNoise->getPerlinValue(x,y);
-            grid->setCellFill(x,y,perlinVal);
+    // perlinNoise = new PerlinNoise(gridRows, gridCols, DEFAULT_CELLSIZE*3);
+    for(int x = 0; x < gridCols; x++){
+        for(int y = 0; y < gridRows; y++){
+            // TODO set this up with the new perlin system
+            // float *perlinVal = perlinNoise->getPerlinValue(x,y);
+            // grid->setCellFill(x,y,perlinVal);
         }
     }
 }

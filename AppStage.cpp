@@ -4,8 +4,10 @@
 #include "raylib.h"
 
 #define DEFAULT_MARGIN 10
-#define DEFAULT_CELLSIZE 15
+#define DEFAULT_CELLSIZE 5
 #define DEFAULT_CELLPERIOD 7
+
+#define PAINT_CELL_OUTLINE_BOOL false
 
 // define constructor
 AppStage::AppStage(int width_in, int height_in){
@@ -18,12 +20,13 @@ AppStage::AppStage(int width_in, int height_in){
     int gridRows = ( width-(gridMargin*2))/cellSize;
     int gridCols = (height-(gridMargin*2))/cellSize;
     // generate grid
-    grid = new Grid(gridMargin, gridRows,gridCols,cellSize);
+    grid = new Grid(gridMargin, gridRows*2,gridCols*2, cellSize);
     // generate perlin noise
-    perlinNoise = new PerlinNoise(gridRows, gridCols, DEFAULT_CELLPERIOD);
-    for(int x = 0; x < gridCols; x++){
-        for(int y = 0; y < gridRows; y++){
-            grid->setCellFill(x,y,perlinNoise->getPerlinValue(x,y));
+    perlinNoise = new PerlinNoise(gridRows, gridCols, DEFAULT_CELLSIZE*3);
+    for(int x = 0; x < gridCols/2; x++){
+        for(int y = 0; y < gridRows/2; y++){
+            float *perlinVal = perlinNoise->getPerlinValue(x,y);
+            grid->setCellFill(x,y,perlinVal);
         }
     }
 }
@@ -35,6 +38,6 @@ AppStage::~AppStage(){
 
 
 void AppStage::paint(){
-    grid->paint(false);
+    grid->paint(PAINT_CELL_OUTLINE_BOOL);
 }
 

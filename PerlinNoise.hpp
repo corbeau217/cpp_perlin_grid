@@ -40,7 +40,7 @@ class PerlinNoise{
      * @param y 
      * @return float 
      */
-    float getPerlinValue(int x, int y);
+    float *getPerlinValue(int x, int y);
 
     /**
      * @brief generates a vector using the current seed

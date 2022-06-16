@@ -13,7 +13,7 @@ Cell::Cell(int x_in, int y_in, int col_in, int row_in, int size_in){
     // size
     size = size_in;
     // default fill
-    fill = 1;
+    filler = new float(1.0);
 }
 
 // destructor
@@ -23,8 +23,10 @@ Cell::~Cell(){
 
 // paint function
 void Cell::paint(bool drawOutlines){
-    unsigned char fillToShade = fill*255;
-    Color cellFill = (Color){fillToShade, fillToShade, fillToShade, 255};
+    float fillToPercent = ((*filler)+1)/2.0f;
+    float fillToShade = fillToPercent*255.0f;
+    unsigned char finalFillValue = fillToShade;
+    Color cellFill = (Color){finalFillValue, finalFillValue, finalFillValue, 255};
     // draw fill
     DrawRectangle(x,y,size,size,cellFill);
     if(drawOutlines)
@@ -32,7 +34,7 @@ void Cell::paint(bool drawOutlines){
         DrawRectangleLines(x,y,size,size,DARKGRAY);
 }
 
-void Cell::setFill(float fill_in){
-    fill = fill_in;
+void Cell::setFill(float *fill_in){
+    *filler = *fill_in;
 }
 

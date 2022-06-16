@@ -2,7 +2,9 @@
 // include out header
 #include "PerlinNoise.hpp"
 
-#define USING_FADEFUNC false
+#define USING_FADEFUNC true
+
+#define TIMES_RESULT_BY 100
 
 // constructor without seed origin
 PerlinNoise::PerlinNoise(int pixel_width_in, int pixel_height_in, int pixel_period_in){
@@ -19,10 +21,10 @@ PerlinNoise::PerlinNoise(int pixel_width_in, int pixel_height_in, int pixel_peri
     gradientGrid_rows = (int)(ceilf(pixel_height / pixel_period) + 1);
     // setup gradient grid
     gradientGrid = new Vector2**[gradientGrid_cols];
-    for(int x = 0; x < gradientGrid_cols; x++){
-        gradientGrid[x] = new Vector2*[gradientGrid_rows];
-        for(int y = 0; y < gradientGrid_rows; y++){
-            gradientGrid[x][y] = getNextRandomVector();
+    for(int y = 0; y < gradientGrid_cols; y++){
+        gradientGrid[y] = new Vector2*[gradientGrid_rows];
+        for(int x = 0; x < gradientGrid_rows; x++){
+            gradientGrid[y][x] = getNextRandomVector();
         }
     }
     // setup use fade bool
@@ -56,15 +58,15 @@ PerlinNoise::PerlinNoise(int pixel_width_in, int pixel_height_in, int pixel_peri
 
 // destructor
 PerlinNoise::~PerlinNoise(){
-    delete seeder;
-    // delete the pointers
-    for(int x = 0; x < gradientGrid_cols; x++){
-        for(int y = 0; y < gradientGrid_rows; y++){
-            delete gradientGrid[x][y];
-        }
-        delete gradientGrid[x];
-    }
-    delete gradientGrid;
+    // delete seeder;
+    // // delete the pointers
+    // for(int x = 0; x < gradientGrid_cols; x++){
+    //     for(int y = 0; y < gradientGrid_rows; y++){
+    //         delete gradientGrid[x][y];
+    //     }
+    //     delete gradientGrid[x];
+    // }
+    // delete gradientGrid;
 }
 
 /**
@@ -74,7 +76,7 @@ PerlinNoise::~PerlinNoise(){
  * @param y 
  * @return float : 0.0 - 1.0
  */
-float PerlinNoise::getPerlinValue(int x, int y){
+float *PerlinNoise::getPerlinValue(int x, int y){
     // coords of cell
     int cell_x = (int)floorf(x / pixel_period);
     int cell_y = (int)floorf(y / pixel_period);
@@ -87,10 +89,10 @@ float PerlinNoise::getPerlinValue(int x, int y){
         relative_y = fadeFunc(relative_y);
     }
     // gradient vectors to use
-    Vector2 *top_left_gradient = gradientGrid[cell_x     ][cell_y    ];
-    Vector2 *top_right_gradient = gradientGrid[cell_x + 1][cell_y    ];
-    Vector2 *bot_left_gradient = gradientGrid[cell_x     ][cell_y + 1];
-    Vector2 *bot_right_gradient = gradientGrid[cell_x + 1][cell_y + 1];
+    Vector2 *top_left_gradient = gradientGrid [cell_y    ][cell_x    ];
+    Vector2 *top_right_gradient = gradientGrid[cell_y    ][cell_x + 1];
+    Vector2 *bot_left_gradient = gradientGrid [cell_y + 1][cell_x    ];
+    Vector2 *bot_right_gradient = gradientGrid[cell_y + 1][cell_x + 1];
     
     // calculate contributions
     float top_left_contribution = dotProdFunc(
@@ -122,7 +124,8 @@ float PerlinNoise::getPerlinValue(int x, int y){
     float bot_lerp = lerp(bot_left_contribution, bot_right_contribution, relative_x);
     // final lerp
     float final_value = lerp(top_lerp, bot_lerp, relative_y);
-    return final_value / (sqrt(2) / 2);
+    float *returnable_value = new float(final_value / (sqrt(2) / 2)*TIMES_RESULT_BY);
+    return returnable_value;
 }
 
 /**

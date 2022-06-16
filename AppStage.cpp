@@ -20,7 +20,7 @@ AppStage::AppStage(int width_in, int height_in){
     int gridRows = ( width-(gridMargin*2))/cellSize;
     int gridCols = (height-(gridMargin*2))/cellSize;
     // generate grid
-    grid = new Grid(gridMargin, gridRows,gridCols, cellSize);
+    grid = make_unique<Grid>(gridMargin, gridRows,gridCols, cellSize);
     // generate perlin noise
     // perlinNoise = new PerlinNoise(gridRows, gridCols, DEFAULT_CELLSIZE*3);
     for(int x = 0; x < gridCols; x++){

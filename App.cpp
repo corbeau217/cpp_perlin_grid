@@ -16,11 +16,10 @@
 // ----------------------------------------
 // define static members
 
-App *App::app = nullptr;
+unique_ptr<App> App::app = make_unique<App>();
 
 void App::start(){
     cout << "[running]: App::start()" << endl;
-    App::app = new App();
     App::app->run();
 }
 
@@ -41,12 +40,13 @@ App::App(){
     // set initialisation bool to false
     initialised = false;
     // setup app stage
-    appStage = new AppStage(appWidth,appHeight);
+    
+    appStage = make_unique<AppStage>(appWidth,appHeight);
 }
 // define our destructor
 App::~App(){
     //TODO
-    delete appStage;
+    // delete appStage;
 }
 
 // define getters
@@ -124,7 +124,7 @@ void App::reinitialise(){
     updateFramerate(DEFAULT_FRAMERATE);
     updateTitle(DEFAULT_TITLE);
     // TODO: modify children to default
-    appStage = new AppStage(appWidth,appHeight);
+    appStage = make_unique<AppStage>(appWidth,appHeight);
 }
 
 /**
@@ -142,9 +142,9 @@ void App::cleanup(){
 void App::paint(){
     ClearBackground(appFrameBackground);
     // check our appStage is ready for painting
-    if(appStage && appStage!=nullptr)
+    // if(appStage)
         // hand off for painting
-        appStage->paint();
+    appStage->paint();
 }
 
 /**

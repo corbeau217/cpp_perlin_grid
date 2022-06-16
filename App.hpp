@@ -19,7 +19,7 @@
 #include "AppStage.hpp"
 // c/c++ includes here
 #include <string>  // for strings
-#include <iostream>  // for cout/endl
+#include <iostream>  // for cout/endl/unique_ptr/make_unique
 
 // saves typing std::
 using namespace std;
@@ -37,7 +37,7 @@ class App{
     public:
     // ----------------------------------------
     // static members
-    static App *app;
+    static unique_ptr<App> app;
 
     static void start();
 
@@ -57,7 +57,7 @@ class App{
     Color appFrameBackground;
 
     // stage var
-    AppStage *appStage;
+    unique_ptr<AppStage> appStage;
 
     // constructor
     App();

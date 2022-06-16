@@ -14,7 +14,10 @@
 #define APPSTAGE_HPP
 
 #include "Grid.hpp"
+#include <iostream>  // for cout/endl/unique_ptr/make_unique
 // #include "PerlinNoise.hpp"
+
+using namespace std;
 
 class AppStage{
     public:
@@ -22,7 +25,7 @@ class AppStage{
     int width;
     int height;
     // grid instance
-    Grid *grid;
+    unique_ptr<Grid> grid;
     // perlin noise instance
     // PerlinNoise *perlinNoise;
 

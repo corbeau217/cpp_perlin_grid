@@ -3,7 +3,10 @@
 #define GRID_HPP
 
 #include "Cell.hpp"
+#include <iostream>  // for cout/endl/unique_ptr/make_unique
 
+// saves typing std::
+using namespace std;
 
 class Grid{
     public:
@@ -16,7 +19,7 @@ class Grid{
     // cell size
     int cellSize;
     // cells
-    Cell ***cells;
+    unique_ptr<unique_ptr<unique_ptr<Cell>[]>[]> cells;
 
     // constructor
     Grid(int margin_in, int cols_in, int rows_in, int cellSize_in);

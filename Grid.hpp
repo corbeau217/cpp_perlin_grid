@@ -1,6 +1,5 @@
 // header guard
-#ifndef GRID_HPP
-#define GRID_HPP
+#pragma once
 
 #include "Cell.hpp"
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
@@ -42,4 +41,3 @@ class Grid{
     void setCellFill(int x, int y, float fill);
 };
 
-#endif

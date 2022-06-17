@@ -1,5 +1,4 @@
-#ifndef CELL_HPP
-#define CELL_HPP
+#pragma once
 
 class Cell{
     public:
@@ -29,4 +28,3 @@ class Cell{
     void setFill(float fill_in);
 };
 
-#endif

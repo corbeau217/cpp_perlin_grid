@@ -10,8 +10,7 @@
  */
 
 // header guard to prevent redefining
-#ifndef APPSTAGE_HPP
-#define APPSTAGE_HPP
+#pragma once
 
 #include "Grid.hpp"
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
@@ -44,4 +43,3 @@ class AppStage{
     void paint();
 };
 
-#endif

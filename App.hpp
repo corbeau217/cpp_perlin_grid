@@ -10,8 +10,7 @@
  */
 
 // header guard to stop redefining
-#ifndef APP_HPP
-#define APP_HPP
+#pragma once
 
 // raylib includes here
 #include "raylib.h"
@@ -121,5 +120,3 @@ class App{
     void run();
 
 };
-
-#endif

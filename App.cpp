@@ -27,20 +27,20 @@ void App::start(){
 // define instance members
 
 // define our constructor
-App::App(){
-    // setup dimensions
-    appWidth = DEFAULT_WIDTH;
-    appHeight = DEFAULT_HEIGHT;
-    // setup framerate
-    appFramerate = DEFAULT_FRAMERATE;
-    // setup default title
-    appTitle = DEFAULT_TITLE;
-    // setup default background color
-    appFrameBackground = DEFAULT_FRAME_BG;
-    // set initialisation bool to false
-    initialised = false;
+App::App() :
+// we gotta do these in order of their declaration from the header
+// setup dimensions
+appWidth{DEFAULT_WIDTH}, appHeight {DEFAULT_HEIGHT},
+// setup framerate
+appFramerate {DEFAULT_FRAMERATE},
+// setup default title
+appTitle {DEFAULT_TITLE},
+// set initialisation bool to false
+initialised {false},
+// setup default background color
+appFrameBackground {DEFAULT_FRAME_BG}
+{
     // setup app stage
-    
     appStage = make_unique<AppStage>(appWidth,appHeight);
 }
 // define our destructor

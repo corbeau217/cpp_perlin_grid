@@ -24,6 +24,9 @@ class AppStage{
     // dimension variables
     int width;
     int height;
+    // grid params
+    int gridMargin;
+    int cellSize;
     // grid instance
     unique_ptr<Grid> grid;
     // perlin noise instance

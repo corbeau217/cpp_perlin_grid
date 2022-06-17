@@ -10,13 +10,12 @@
 #define PAINT_CELL_OUTLINE_BOOL false
 
 // define constructor
-AppStage::AppStage(int width_in, int height_in){
-    // initialise dimension vars
-    width = width_in;
-    height = height_in;
-    // generate grid params
-    int gridMargin = DEFAULT_MARGIN;
-    int cellSize = DEFAULT_CELLSIZE;
+AppStage::AppStage(int width_in, int height_in)
+// initialise the ez members
+: width{width_in}, height{height_in},
+// generate some grid params
+gridMargin {DEFAULT_MARGIN}, cellSize { DEFAULT_CELLSIZE}
+{
     int gridRows = ( width-(gridMargin*2))/cellSize;
     int gridCols = (height-(gridMargin*2))/cellSize;
     // generate grid

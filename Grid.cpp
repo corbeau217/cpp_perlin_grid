@@ -2,17 +2,18 @@
 #include "Grid.hpp"
 
 // constructor
-Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in){
-    // setup margins
-    xMargin = margin_in;
-    yMargin = margin_in;
-    // setup cell size
-    cellSize = cellSize_in;
-    // set up array bounds
-    cols = cols_in;
-    rows = rows_in;
-    // setup cells
-    cells = make_unique<unique_ptr<unique_ptr<Cell>[]>[]>(cols);
+Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in) :
+// setup margins
+xMargin {margin_in}, yMargin {margin_in},
+// set up array bounds
+cols {cols_in}, rows {rows_in},
+// setup cell size
+cellSize {cellSize_in},
+// setup cells
+cells {make_unique<unique_ptr<unique_ptr<Cell>[]>[]>(cols)}
+{
+    
+    // cells = make_unique<unique_ptr<unique_ptr<Cell>[]>[]>(cols);
     // cells = make_unique<unique_ptr<Cell[]>>[](cols);
     // cells = new Cell**[cols];
     for(int x = 0; x < cols; x++){
@@ -56,7 +57,7 @@ Cell *Grid::get(int x, int y){
  * @param y 
  * @param fill : 0.0 - 1.0
  */
-void Grid::setCellFill(int x, int y, float *fill){
+void Grid::setCellFill(int x, int y, float fill){
     cells.get()[x].get()[y].get()->setFill(fill);
 }
 

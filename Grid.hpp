@@ -39,7 +39,7 @@ class Grid{
      * @param y 
      * @param fill : 0.0 - 1.0
      */
-    void setCellFill(int x, int y, float *fill);
+    void setCellFill(int x, int y, float fill);
 };
 
 #endif

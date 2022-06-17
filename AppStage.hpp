@@ -14,9 +14,10 @@
 
 #include "Grid.hpp"
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
-// #include "PerlinNoise.hpp"
+#include "Perlin.hpp" // the plagarised perlin machiner
 
 using namespace std;
+using namespace Perlin;
 
 class AppStage{
     public:
@@ -26,10 +27,18 @@ class AppStage{
     // grid params
     int gridMargin;
     int cellSize;
+
+    // our seed that we use
+    unsigned int seedVal;
+
     // grid instance
     unique_ptr<Grid> grid;
+    
     // perlin noise instance
-    // PerlinNoise *perlinNoise;
+    unique_ptr<Generator> perlinGenerator;
+
+
+    
 
     // constructor
     AppStage(int width_in, int height_in);

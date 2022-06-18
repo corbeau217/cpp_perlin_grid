@@ -6,8 +6,9 @@
 
 
 #define DEFAULT_MARGIN 10
-#define DEFAULT_CELLSIZE 5
-#define DEFAULT_CELLPERIOD 7
+#define DEFAULT_CELLSIZE 30
+
+#define DEFAULT_ZOOM 3.0
 
 #define PAINT_CELL_OUTLINE_BOOL false
 
@@ -31,7 +32,8 @@ seedVal {SEED_INITIALISING_CODE}
     // generate grid#
     grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize);
     // generate perlin noise
-    perlin = make_unique<Noise>(max<int>(width,height),max<int>(width,height),6.5,3u,0.5,seedVal);
+    int perlinSize = max<int>(width,height);
+    perlin = make_unique<Noise>(perlinSize,perlinSize,DEFAULT_ZOOM,3u,0.5,seedVal);
     // loop throught the grid and effect it
     
     for(int xIdx = 0; xIdx < gridCols; xIdx++){

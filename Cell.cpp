@@ -9,10 +9,9 @@ x {x_in}, y {y_in},
 // indexes
 col {col_in}, row {row_in},
 // size
-size {size_in},
-// default fill
-filler {1.0f}
+size {size_in}
 {
+    filler = new double(1.0);
     // nothing here we did it all the other way
 }
 
@@ -23,8 +22,7 @@ Cell::~Cell(){
 
 // paint function
 void Cell::paint(bool drawOutlines){
-    float fillToPercent = (filler+1)/2.0f;
-    float fillToShade = fillToPercent*255.0f;
+    double fillToShade = (*filler)*255.0;
     unsigned char finalFillValue = fillToShade;
     Color cellFill = (Color){finalFillValue, finalFillValue, finalFillValue, 255};
     // draw fill
@@ -34,7 +32,7 @@ void Cell::paint(bool drawOutlines){
         DrawRectangleLines(x,y,size,size,DARKGRAY);
 }
 
-void Cell::setFill(float fill_in){
-    filler = fill_in;
+void Cell::setFill(double *fill_in){
+    *filler = ((*fill_in)+1)/2.0;
 }
 

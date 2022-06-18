@@ -18,7 +18,7 @@ class Grid{
     // cell size
     int cellSize;
     // cells
-    unique_ptr<unique_ptr<unique_ptr<Cell>[]>[]> cells;
+    Cell ***cells;
 
     // constructor
     Grid(int margin_in, int cols_in, int rows_in, int cellSize_in);
@@ -38,6 +38,8 @@ class Grid{
      * @param y 
      * @param fill : 0.0 - 1.0
      */
-    void setCellFill(int x, int y, float fill);
+    void setCellFill(int x, int y, double *fill);
+
+    bool validPos(int x, int y);
 };
 

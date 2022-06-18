@@ -35,7 +35,7 @@ class AppStage{
     unique_ptr<Grid> grid;
     
     // perlin noise instance
-    unique_ptr<Generator> perlinGenerator;
+    unique_ptr<Noise> perlin;
 
 
     

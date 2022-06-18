@@ -26,18 +26,23 @@ seedVal {SEED_INITIALISING_CODE}
     // TODO
     cout << "#### - USING SEED: " << seedVal << " - ####" << endl;
     // now prepare the grid cells
-    int gridRows = ( width-(gridMargin*2))/cellSize;
-    int gridCols = (height-(gridMargin*2))/cellSize;
+    int gridCols = ( width-(gridMargin*2))/cellSize;
+    int gridRows = (height-(gridMargin*2))/cellSize;
     // generate grid#
-    grid = make_unique<Grid>(gridMargin, gridRows,gridCols, cellSize);
+    grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize);
     // generate perlin noise
-    perlinGenerator = make_unique<Generator>(seedVal);
+    perlin = make_unique<Noise>(max<int>(width,height),max<int>(width,height),6.5,3u,0.5,seedVal);
     // loop throught the grid and effect it
-    for(int x = 0; x < gridCols; x++){
-        for(int y = 0; y < gridRows; y++){
+    
+    for(int xIdx = 0; xIdx < gridCols; xIdx++){
+        for(int yIdx = 0; yIdx < gridRows; yIdx++){
+            // if(!grid->validPos(xIdx,yIdx))
+            //     break;
             // TODO set this up with the new perlin system
-            // float *perlinVal = perlinNoise->getPerlinValue(x,y);
-            // grid->setCellFill(x,y,perlinVal);
+            int xPos = gridMargin + xIdx*cellSize;
+            int yPos = gridMargin + yIdx*cellSize;
+            double currFill = perlin->get(xPos,yPos);
+            grid->get(xIdx,yIdx)->setFill(&currFill);
         }
     }
 }

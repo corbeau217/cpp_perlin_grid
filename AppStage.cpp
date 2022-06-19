@@ -47,7 +47,7 @@ seedVal {SEED_INITIALISING_CODE}
             int xPos = gridMargin + xIdx*cellSize;
             int yPos = gridMargin + yIdx*cellSize;
             double currFill = perlin->get(xPos,yPos);
-            grid->get(xIdx,yIdx)->setFill(&currFill);
+            grid->setCellFill(xIdx,yIdx,currFill);
         }
     }
 }

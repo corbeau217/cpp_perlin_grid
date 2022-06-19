@@ -61,7 +61,7 @@ Cell *Grid::get(int x, int y){
  * @param y 
  * @param fill : 0.0 - 1.0
  */
-void Grid::setCellFill(int x, int y, double *fill){
+void Grid::setCellFill(int x, int y, double fill){
     cells[x][y]->setFill(fill);
 }
 

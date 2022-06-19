@@ -16,7 +16,7 @@ class Cell{
     int size;
 
     // fill var
-    double *filler;
+    double filler;
 
     // constructor
     Cell(int x_in, int y_in, int col_in, int row_in, int size_in);
@@ -25,6 +25,6 @@ class Cell{
     // paint function
     void paint(bool drawOutlines);
 
-    void setFill(double *fill_in);
+    void setFill(double fill_in);
 };
 

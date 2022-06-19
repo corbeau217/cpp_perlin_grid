@@ -38,7 +38,7 @@ class Grid{
      * @param y 
      * @param fill : 0.0 - 1.0
      */
-    void setCellFill(int x, int y, double *fill);
+    void setCellFill(int x, int y, double fill);
 
     bool validPos(int x, int y);
 };

@@ -8,11 +8,14 @@
 #define DEFAULT_MARGIN 10
 #define DEFAULT_CELLSIZE 30
 
-#define DEFAULT_ZOOM 3.0
+#define DEFAULT_FREQUENCY 3.0 // double - zoom
+#define DEFAULT_OCTAVES 1u //unsigned int
+#define DEFAULT_PERSISTENCE 0.5 // double - fall off of octaves
 
 #define PAINT_CELL_OUTLINE_BOOL false
 
-#define SEED_INITIALISING_CODE (unsigned)time(NULL)
+#define SEED_GENERATE_NEW (unsigned)time(NULL)
+#define SEED_INITIALISING_CODE SEED_GENERATE_NEW
 
 // define constructor
 AppStage::AppStage(int width_in, int height_in)
@@ -32,8 +35,8 @@ seedVal {SEED_INITIALISING_CODE}
     // generate grid#
     grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize);
     // generate perlin noise
-    int perlinSize = max<int>(width,height);
-    perlin = make_unique<Noise>(perlinSize,perlinSize,DEFAULT_ZOOM,3u,0.5,seedVal);
+    int perlinSize = max<int>(width,height); // to generate a square
+    perlin = make_unique<Noise>(perlinSize,perlinSize,DEFAULT_FREQUENCY,DEFAULT_OCTAVES,0.5,seedVal);
     // loop throught the grid and effect it
     
     for(int xIdx = 0; xIdx < gridCols; xIdx++){

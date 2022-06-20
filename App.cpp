@@ -41,7 +41,7 @@ initialised {false},
 appFrameBackground {DEFAULT_FRAME_BG}
 {
     // setup app stage
-    appStage = make_unique<AppStage>(appWidth,appHeight);
+    appStage = make_unique<AppStagePerlin>(appWidth,appHeight);
 }
 // define our destructor
 App::~App(){
@@ -124,7 +124,7 @@ void App::reinitialise(){
     updateFramerate(DEFAULT_FRAMERATE);
     updateTitle(DEFAULT_TITLE);
     // TODO: modify children to default
-    appStage = make_unique<AppStage>(appWidth,appHeight);
+    appStage = make_unique<AppStagePerlin>(appWidth,appHeight);
 }
 
 /**

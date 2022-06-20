@@ -16,6 +16,7 @@
 #include "raylib.h"
 // project includes here
 #include "AppStage.hpp"
+#include "AppStagePerlin.hpp"
 // c/c++ includes here
 #include <string>  // for strings
 #include <iostream>  // for cout/endl/unique_ptr/make_unique

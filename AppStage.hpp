@@ -24,31 +24,17 @@ class AppStage{
     // dimension variables
     int width;
     int height;
-    // grid params
-    int gridMargin;
-    int cellSize;
-
-    // our seed that we use
-    unsigned int seedVal;
-
-    // grid instance
-    unique_ptr<Grid> grid;
     
-    // perlin noise instance
-    unique_ptr<Noise> perlin;
-
-
-    
-
     // constructor
-    AppStage(int width_in, int height_in);
+    AppStage();
     // destructor
-    ~AppStage();
+    virtual ~AppStage();
+
 
     /**
      * @brief handles painting the frame of app stage
      * 
      */
-    void paint();
+    virtual void paint()=0;
 };
 

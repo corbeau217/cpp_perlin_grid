@@ -46,31 +46,49 @@ seedVal {SEED_INITIALISING_CODE}
     int perlinSize = max<int>(width,height); // to generate a square
     perlin = make_unique<Noise>(perlinSize,perlinSize,DEFAULT_FREQUENCY,DEFAULT_OCTAVES,0.5,seedVal);
 
-    // loop throught the grid and effect it
-    for(int xIdx = 0; xIdx < gridCols; xIdx++){
-        for(int yIdx = 0; yIdx < gridRows; yIdx++){
-            // get our grid position of each cell
-            int xPos = gridMargin + xIdx*cellSize;
-            int yPos = gridMargin + yIdx*cellSize;
-            // get the fill at that location
-            double currFill = perlin->get(xPos,yPos);
-            // now convert to color
-            // get our filler out of 255
-            double fillToShade = ((currFill+1)/2.0)*255.0;
-            // convert to unsigned char
-            unsigned char finalFillValue = fillToShade;
-            // get as color
-            Color cellFill = (Color){finalFillValue, finalFillValue, finalFillValue, 255};
-            // give the fill to grid
-            grid->setCellColor(xIdx,yIdx,cellFill);
-        }
-    }
+    // now update the grid
+    updateGrid();
 }
 
 AppStagePerlin::~AppStagePerlin(){
     //TODO
 }
 
+/**
+ * @brief this handles giving the grid the perlin values
+ * 
+ */
+void AppStagePerlin::updateGrid(){
+    // get our grid information
+    int gridCols = grid->getCols();
+    int gridRows = grid->getRows();
+    // loop throught the grid and effect it
+    for(int xIdx = 0; xIdx < gridCols; xIdx++){
+        for(int yIdx = 0; yIdx < gridRows; yIdx++){
+            // get our grid position of each cell
+            int xPos = grid->getCellPosX(xIdx,yIdx);
+            int yPos = grid->getCellPosY(xIdx,yIdx);
+            // get the fill at that location
+            double currPerlinVal = perlin->get(xPos,yPos);
+            // give the fill to grid
+            grid->setCellColor(
+                xIdx,yIdx,
+                perlinValueAsColor(currPerlinVal)
+                );
+        }
+    }
+}
+
 void AppStagePerlin::paint(){
     grid->paint();
 }
+
+Color AppStagePerlin::perlinValueAsColor(double perlinValue_in){
+    // get our filler out of 255
+    double fillToShade = ((perlinValue_in+1)/2.0)*255.0;
+    // convert to unsigned char
+    unsigned char finalFillValue = fillToShade;
+    // return as color
+    return (Color){finalFillValue, finalFillValue, finalFillValue, 255};
+}
+

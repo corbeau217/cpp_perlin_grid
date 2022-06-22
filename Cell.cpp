@@ -36,3 +36,10 @@ void Cell::paint(){
 void Cell::setColor(Color color_in){
     cellColor = color_in;
 }
+
+int Cell::getPosX(){
+    return x;
+}
+int Cell::getPosY(){
+    return y;
+}

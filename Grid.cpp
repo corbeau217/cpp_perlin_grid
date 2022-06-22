@@ -78,3 +78,16 @@ bool Grid::validPos(int x, int y){
     return true;
 }
 
+int Grid::getCellPosX(int xIdx, int yIdx){
+    return cells[xIdx][yIdx]->getPosX();
+}
+int Grid::getCellPosY(int xIdx, int yIdx){
+    return cells[xIdx][yIdx]->getPosY();
+}
+
+int Grid::getCols(){
+    return cols;
+}
+int Grid::getRows(){
+    return rows;
+}

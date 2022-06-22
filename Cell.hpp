@@ -35,5 +35,8 @@ class Cell{
     void paint();
 
     void setColor(Color color_in);
+    
+    int getPosX();
+    int getPosY();
 };
 

@@ -32,8 +32,16 @@ class AppStagePerlin : public AppStage {
     virtual ~AppStagePerlin();
 
     /**
+     * @brief this handles giving the grid the perlin values
+     * 
+     */
+    void updateGrid();
+
+    /**
      * @brief handles painting the frame of app stage
      * 
      */
     void paint();
+
+    static Color perlinValueAsColor(double perlinValue_in);
 };

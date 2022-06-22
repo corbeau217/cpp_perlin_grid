@@ -31,17 +31,23 @@ class Grid{
     void paint();
 
     // get cell at location
-    Cell *get(int x, int y);
+    Cell *get(int xIdx, int yIdx);
 
     /**
      * @brief Set the color of the cell
      * 
-     * @param x : idx
-     * @param y : idx
+     * @param xIdx : idx
+     * @param yIdx : idx
      * @param color_in : raylib color
      */
-    void setCellColor(int x, int y, Color color_in);
+    void setCellColor(int xIdx, int yIdx, Color color_in);
 
-    bool validPos(int x, int y);
+    bool validPos(int xIdx, int yIdx);
+
+    int getCellPosX(int xIdx, int yIdx);
+    int getCellPosY(int xIdx, int yIdx);
+
+    int getCols();
+    int getRows();
 };
 

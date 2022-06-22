@@ -42,6 +42,7 @@ appFrameBackground {DEFAULT_FRAME_BG}
 {
     // setup app stage
     appStage = make_unique<AppStagePerlin>(appWidth,appHeight);
+    this->updateTitle(appStage->getDesiredTitle());
 }
 // define our destructor
 App::~App(){

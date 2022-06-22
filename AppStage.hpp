@@ -15,6 +15,9 @@
 #include "Grid.hpp"
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
 #include "Perlin.hpp" // the plagarised perlin machiner
+#include <string>
+
+#define DEFAULT_APPSTAGE_TITLE "App"
 
 using namespace std;
 using namespace Perlin;
@@ -24,6 +27,8 @@ class AppStage{
     // dimension variables
     int width;
     int height;
+    // title var
+    string title;
     
     // constructor
     AppStage();
@@ -36,5 +41,17 @@ class AppStage{
      * 
      */
     virtual void paint()=0;
+
+    /**
+     * @brief Get the desired title from our AppStage instance
+     * 
+     * (this should be set during constructors)
+     * 
+     */
+    string getDesiredTitle(){
+        if(title.length() > 0)
+            return title;
+        return DEFAULT_APPSTAGE_TITLE;
+    }
 };
 

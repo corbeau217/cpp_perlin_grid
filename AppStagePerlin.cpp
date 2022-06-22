@@ -40,7 +40,7 @@ seedVal {SEED_INITIALISING_CODE}
     int gridRows = (height-(gridMargin*2))/cellSize;
 
     // generate grid
-    grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize);
+    grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize, PAINT_CELL_OUTLINE_BOOL);
 
     // generate perlin noise
     int perlinSize = max<int>(width,height); // to generate a square
@@ -54,8 +54,15 @@ seedVal {SEED_INITIALISING_CODE}
             int yPos = gridMargin + yIdx*cellSize;
             // get the fill at that location
             double currFill = perlin->get(xPos,yPos);
+            // now convert to color
+            // get our filler out of 255
+            double fillToShade = ((currFill+1)/2.0)*255.0;
+            // convert to unsigned char
+            unsigned char finalFillValue = fillToShade;
+            // get as color
+            Color cellFill = (Color){finalFillValue, finalFillValue, finalFillValue, 255};
             // give the fill to grid
-            grid->setCellFill(xIdx,yIdx,currFill);
+            grid->setCellColor(xIdx,yIdx,cellFill);
         }
     }
 }
@@ -65,5 +72,5 @@ AppStagePerlin::~AppStagePerlin(){
 }
 
 void AppStagePerlin::paint(){
-    grid->paint(PAINT_CELL_OUTLINE_BOOL);
+    grid->paint();
 }

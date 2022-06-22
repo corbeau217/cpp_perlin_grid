@@ -4,7 +4,7 @@
 #include "AppStage.hpp"
 
 // constructor
-Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in) :
+Grid::Grid(int margin_in, int cols_in, int rows_in, int cellSize_in, bool drawCellOutline_in) :
 // setup margins
 xMargin {margin_in}, yMargin {margin_in},
 // set up array bounds
@@ -17,6 +17,11 @@ cellSize {cellSize_in}
     // cells = make_unique<unique_ptr<unique_ptr<Cell>[]>[]>(cols);
     // cells = make_unique<unique_ptr<Cell[]>>[](cols);
     // cells = new Cell**[cols];
+
+    // say if we draw cells
+    drawCellOutlines = drawCellOutline_in;
+
+    // loop through and setup
     for(int x = 0; x < cols; x++){
 
         cells[x] = new Cell*[rows];
@@ -25,7 +30,7 @@ cellSize {cellSize_in}
         for(int y = 0; y < rows; y++){
             int xPos = xMargin + x*cellSize;
             int yPos = yMargin + y*cellSize;
-            cells[x][y] = new Cell(xPos,yPos,x,y,cellSize);
+            cells[x][y] = new Cell(xPos,yPos,x,y,cellSize,drawCellOutlines);
             // cells[x][y] = make_unique<Cell>(xPos, yPos, x, y, cellSize);
         }
     }
@@ -42,10 +47,10 @@ Grid::~Grid(){
 }
 
 // paint function
-void Grid::paint(bool drawOutlines){
+void Grid::paint(){
     for(int x = 0; x < cols; x++)
         for(int y = 0; y < rows; y++)
-            get(x,y)->paint(drawOutlines);
+            get(x,y)->paint();
     
 }
 
@@ -55,14 +60,14 @@ Cell *Grid::get(int x, int y){
 }
 
 /**
- * @brief Set the cell at location to be filled by value
+ * @brief Set the color of the cell
  * 
- * @param x 
- * @param y 
- * @param fill : 0.0 - 1.0
+ * @param x : idx
+ * @param y : idx
+ * @param color_in : raylib color
  */
-void Grid::setCellFill(int x, int y, double fill){
-    cells[x][y]->setFill(fill);
+void Grid::setCellColor(int x, int y, Color color_in){
+    cells[x][y]->setColor(color_in);
 }
 
 bool Grid::validPos(int x, int y){

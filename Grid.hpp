@@ -19,26 +19,28 @@ class Grid{
     int cellSize;
     // cells
     Cell ***cells;
+    // bool for if we draw outlines
+    bool drawCellOutlines;
 
     // constructor
-    Grid(int margin_in, int cols_in, int rows_in, int cellSize_in);
+    Grid(int margin_in, int cols_in, int rows_in, int cellSize_in, bool drawCellOutline_in);
     // destructor
     ~Grid();
 
     // paint function
-    void paint(bool drawOutlines);
+    void paint();
 
     // get cell at location
     Cell *get(int x, int y);
 
     /**
-     * @brief Set the cell at location to be filled by value
+     * @brief Set the color of the cell
      * 
-     * @param x 
-     * @param y 
-     * @param fill : 0.0 - 1.0
+     * @param x : idx
+     * @param y : idx
+     * @param color_in : raylib color
      */
-    void setCellFill(int x, int y, double fill);
+    void setCellColor(int x, int y, Color color_in);
 
     bool validPos(int x, int y);
 };

@@ -12,15 +12,12 @@
 // header guard to prevent redefining
 #pragma once
 
-#include "Grid.hpp"
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
-#include "Perlin.hpp" // the plagarised perlin machiner
 #include <string>
 
 #define DEFAULT_APPSTAGE_TITLE "App"
 
 using namespace std;
-using namespace Perlin;
 
 class AppStage{
     public:

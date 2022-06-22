@@ -13,9 +13,13 @@
 #pragma once
 
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
-#include <string>
+#include <string>  // so we can use strings
+#include "raylib.h"  // since we need this to paint
 
 #define DEFAULT_APPSTAGE_TITLE "App"
+#define DEFAULT_MARGIN 10
+#define DEFAULT_CELLSIZE 20
+#define DEFAULT_PAINT_CELL_OUTLINE true
 
 using namespace std;
 

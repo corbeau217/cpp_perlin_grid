@@ -3,8 +3,9 @@
 #include "raylib.h"
 
 
-#define DEFAULT_CELL_FILLER_VAL 1.0
+#define DEFAULT_CELL_SIZE 10
 #define DEFAULT_CELL_FILL_COLOR WHITE
+#define DEFAULT_CELL_DRAWOUTLINE false
 
 class Cell{
     public:
@@ -27,6 +28,7 @@ class Cell{
     // if we draw outline
     bool drawOutline;
 
+    Cell();
     // constructor
     Cell(int x_in, int y_in, int col_in, int row_in, int size_in, bool drawOutline_in);
     ~Cell();

@@ -1,21 +1,5 @@
 # include "AppStagePerlin.hpp"
-#include "raylib.h"
-#include <time.h>
 #include "App.hpp"
-
-
-#define DEFAULT_MARGIN 10
-#define DEFAULT_CELLSIZE 30
-
-#define DEFAULT_FREQUENCY 3.0 // double - zoom
-#define DEFAULT_OCTAVES 1u //unsigned int
-#define DEFAULT_PERSISTENCE 0.5 // double - fall off of octaves
-
-#define PAINT_CELL_OUTLINE_BOOL false
-
-#define SEED_GENERATE_NEW (unsigned)time(NULL)
-#define SEED_INITIALISING_CODE SEED_GENERATE_NEW
-
 
 // define constructor
 AppStagePerlin::AppStagePerlin(int width_in, int height_in)
@@ -40,7 +24,7 @@ seedVal {SEED_INITIALISING_CODE}
     int gridRows = (height-(gridMargin*2))/cellSize;
 
     // generate grid
-    grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize, PAINT_CELL_OUTLINE_BOOL);
+    grid = make_unique<Grid>(gridMargin, gridCols,gridRows, cellSize, DEFAULT_PAINT_CELL_OUTLINE);
 
     // generate perlin noise
     int perlinSize = max<int>(width,height); // to generate a square

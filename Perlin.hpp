@@ -1,6 +1,15 @@
 #pragma once
 
 #include <vector>
+#include <time.h>
+
+// move these here to share them
+#define DEFAULT_FREQUENCY 2.5 // double - zoom
+#define DEFAULT_OCTAVES 3u //unsigned int
+#define DEFAULT_PERSISTENCE 0.5 // double - fall off of octaves
+
+#define SEED_GENERATE_NEW (unsigned)time(NULL)
+#define SEED_INITIALISING_CODE SEED_GENERATE_NEW
 
 namespace Perlin{
 	/*

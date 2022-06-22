@@ -2,6 +2,21 @@
 #include "Cell.hpp"
 
 
+Cell::Cell() :
+// position
+x {0}, y {0},
+// indexes
+col {-1}, row {-1},
+// size
+size {DEFAULT_CELL_SIZE},
+// fill color
+cellColor {DEFAULT_CELL_FILL_COLOR},
+// whether we draw the outline
+drawOutline{DEFAULT_CELL_DRAWOUTLINE}
+{
+    
+}
+
 // constructor
 Cell::Cell(int x_in, int y_in, int col_in, int row_in, int size_in, bool drawOutline_in) :
 // position

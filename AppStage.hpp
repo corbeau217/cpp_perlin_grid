@@ -22,7 +22,7 @@
 #define DEFAULT_APPSTAGE_TITLE "App"
 #define DEFAULT_MARGIN 10
 #define DEFAULT_CELLSIZE 20
-#define DEFAULT_PAINT_CELL_OUTLINE true
+#define DEFAULT_PAINT_CELL_OUTLINE false
 
 using namespace std;
 

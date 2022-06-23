@@ -12,6 +12,8 @@
 // include our header
 #include "App.hpp"
 
+// so the preprocessor will handle filling in what AppStage we use
+#define APPSTAGE_TYPE AppStageTerrain
 
 // ----------------------------------------
 // define static members
@@ -41,8 +43,11 @@ initialised {false},
 appFrameBackground {DEFAULT_FRAME_BG}
 {
     // setup app stage
-    appStage = make_unique<AppStageTerrain>(appWidth,appHeight);
+    appStage = make_unique<APPSTAGE_TYPE>(appWidth,appHeight);
     this->updateTitle(appStage->getDesiredTitle());
+    
+    // setup our vars for refreshing
+    framesUntilRefreshCooldown = {0};
 }
 // define our destructor
 App::~App(){
@@ -120,12 +125,15 @@ void App::initialise(){
  * 
  */
 void App::reinitialise(){
+    // start our cooldown variable
+    framesUntilRefreshCooldown = REFRESH_FRAME_COOLDOWN;
+
     // change everything back to defaults
     updateDimensions(DEFAULT_WIDTH, DEFAULT_HEIGHT);
     updateFramerate(DEFAULT_FRAMERATE);
     updateTitle(DEFAULT_TITLE);
     // TODO: modify children to default
-    appStage = make_unique<AppStagePerlin>(appWidth,appHeight);
+    appStage = make_unique<APPSTAGE_TYPE>(appWidth,appHeight);
 }
 
 /**
@@ -141,11 +149,19 @@ void App::cleanup(){
  * 
  */
 void App::paint(){
+    // code for handling refreshing the grid
+    if(desireRefresh())
+        reinitialise();
+    
+    // continue as normal
     ClearBackground(appFrameBackground);
     // check our appStage is ready for painting
     // if(appStage)
         // hand off for painting
     appStage->paint();
+
+    // done paint frame, tick refresh cooldown
+    tickRefreshCooldown();
 }
 
 /**
@@ -166,4 +182,29 @@ void App::run(){
 
     // cleanup the app
     cleanup();
+}
+
+/**
+ * @brief checks if we should refresh
+ * 
+ * @return true : APP_REFRESH_KEY down and not cooldown
+ * @return false : otherwise
+ */
+bool App::desireRefresh(){
+    // check if cooldown
+    if(framesUntilRefreshCooldown > 0)
+        return false;
+    
+    // check if key down
+    if(IsKeyDown(APP_REFRESH_KEY))
+        return true;
+    
+    // otherwise
+    return false;
+}
+
+// handles ticking down the refresh cooldown
+void App::tickRefreshCooldown(){
+    if(framesUntilRefreshCooldown > 0)
+        --framesUntilRefreshCooldown;
 }

@@ -33,9 +33,13 @@ using namespace std;
 #define DEFAULT_HEIGHT 720
 #define DEFAULT_FRAMERATE 15
 #define DEFAULT_TITLE "C++ perlin noise grid project"
+// how many frames after a refresh before we can do another
+#define REFRESH_FRAME_COOLDOWN 5 
+#define APP_REFRESH_KEY KEY_SPACE
 
 // color definitions
 #define DEFAULT_FRAME_BG GRAY
+
 
 class App{
     public:
@@ -62,6 +66,15 @@ class App{
 
     // stage var
     unique_ptr<AppStage> appStage;
+
+    // reinitialising tracking variable
+
+    // a rudimentary timer variable for keeping track of
+    //  how long since our last refresh
+    int framesUntilRefreshCooldown;
+
+
+
 
     // constructor
     App();
@@ -124,4 +137,14 @@ class App{
      */
     void run();
 
+    /**
+     * @brief checks if we should refresh
+     * 
+     * @return true : APP_REFRESH_KEY down and not cooldown
+     * @return false : otherwise
+     */
+    bool desireRefresh();
+
+    // handles ticking down the refresh cooldown
+    void tickRefreshCooldown();
 };

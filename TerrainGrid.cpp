@@ -11,6 +11,7 @@ cols {cols_in}, rows {rows_in},
 cellSize {cellSize_in}
 {
     // setup cells
+    //  memory leak but we're lazy
     cells = {new CellTerrain**[cols]};
 
     // say if we draw cells
@@ -18,10 +19,12 @@ cellSize {cellSize_in}
 
     // loop through and setup
     for(int x = 0; x < cols; x++){
+        // memory leak but we're lazy
         cells[x] = new CellTerrain*[rows];
         for(int y = 0; y < rows; y++){
             int xPos = xMargin + x*cellSize;
             int yPos = yMargin + y*cellSize;
+            // this has a memory leak bc we're not deleting them afterwards
             cells[x][y] = new CellTerrain(xPos,yPos,x,y,cellSize,drawCellOutlines);
         }
     }
@@ -30,11 +33,13 @@ cellSize {cellSize_in}
 
 // destructor
 TerrainGrid::~TerrainGrid(){
-    //TODO
+    //TODO - should be handling garbage collection
+    //      of our cells
 }
 
 // paint function
 void TerrainGrid::paint(){
+    // for each cell, paint it
     for(int x = 0; x < cols; x++)
         for(int y = 0; y < rows; y++)
             get(x,y)->paint();

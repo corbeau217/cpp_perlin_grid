@@ -22,6 +22,7 @@ class TerrainGrid{
     // cell size
     int cellSize;
     // cells
+    //   memory leaked format, need to fix it later
     CellTerrain ***cells;
     // bool for if we draw outlines
     bool drawCellOutlines;

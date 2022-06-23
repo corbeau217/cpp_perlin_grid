@@ -21,6 +21,9 @@
 // c/c++ includes here
 #include <string>  // for strings
 #include <iostream>  // for cout/endl/unique_ptr/make_unique
+// we need this so the unique_ptr and
+//      make_unique work on windows
+#include <memory>
 
 // saves typing std::
 using namespace std;
